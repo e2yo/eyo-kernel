@@ -26,8 +26,54 @@
 ## Использование
 ```
 var eyo = require('eyo-kernel');
-console.log(eyo.restore('Лед')); // Лёд
 ```
+
+## Методы
+### .restore(text)
+Безопасно восстанавливает букву «ё» в тексте.<br/>
+`text {string}` – текст. Обязательный аргумент.<br/>
+Возвращаемое значение: `{string}`.
+```js
+console.log(eyo.restore('Все лед')); // Все лёд.
+```
+
+### .lint(text, [needSort])
+Поиск вариантов безопасной и небезопасной замены «ё».<br/>
+`text {string}` – текст. Обязательный аргумент.<br/>
+`needSort {boolean}` – Сортивать ли полученные варианты замены. Необязательный аргумент.<br/>
+Возвращаемое значение: `{Object}`.
+```js
+console.log(eyo.lint('Все лед.'));
+/* {
+  safe: [
+    {
+      before: 'Лед',
+      after: 'Лёд',
+      count: 1,
+      position: [
+        {
+          line: 1,
+          column: 5
+        }
+      ]
+    }
+  ]
+  notSafe: [
+    {
+      before: 'Все',
+      after: 'Всё',
+      count: 1,
+      position: [
+        {
+          line: 1,
+          column: 1
+        }
+      ]
+    }
+  ] 
+} */
+```
+
 ## [Консольная утилита](https://github.com/hcodes/eyo)
 
 ## Ссылки
