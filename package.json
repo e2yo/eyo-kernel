@@ -1,7 +1,7 @@
 {
   "name": "eyo-kernel",
   "description": "Restoring the letter «ё» (yo) in russian texts",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "author": {
     "name": "Denis Seleznev",
     "email": "hcodes@yandex.ru",
@@ -9,12 +9,7 @@
   },
   "main": "lib/eyo.js",
   "homepage": "https://github.com/hcodes/eyo-kernel",
-  "licenses": [
-    {
-      "type": "MIT",
-      "url": "https://github.com/hcodes/eyo-kernel/blob/master/LICENSE"
-    }
-  ],
+  "license": "MIT",
   "repository": {
     "type": "git",
     "url": "git://github.com/hcodes/eyo-kernel.git"
@@ -33,11 +28,11 @@
     "LICENSE"
   ],
   "devDependencies": {
-    "chai": "~3.0.0",
-    "istanbul": "~0.3.5",
-    "jscs": "~1.13.1",
-    "jshint": "~2.8.0",
-    "mocha": "~2.2.1"
+    "chai": "~3.4.1",
+    "istanbul": "~0.4.2",
+    "jscs": "~2.8.0",
+    "jshint": "~2.9.1",
+    "mocha": "~2.3.4"
   },
   "scripts": {
     "test": "npm run-script jshint && npm run-script jscs && npm run-script unit-test-coverage",
