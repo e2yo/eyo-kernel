@@ -5,8 +5,7 @@
 [![Build Status](https://img.shields.io/travis/hcodes/eyo-kernel.svg?style=flat)](https://travis-ci.org/hcodes/eyo-kernel)
 [![Build Status](https://img.shields.io/appveyor/ci/hcodes/eyo-kernel/master.svg?style=flat)](https://ci.appveyor.com/project/hcodes/eyo-kernel)
 [![Coverage Status](https://img.shields.io/coveralls/hcodes/eyo-kernel.svg?style=flat)](https://coveralls.io/r/hcodes/eyo-kernel)
-
-[![Dependency Status](https://img.shields.io/david/hcodes/eyo-kernel.svg?style=flat)](https://david-dm.org/hcodes/eyo-kernel) [![devDependency Status](https://img.shields.io/david/dev/hcodes/eyo-kernel.svg?style=flat)](https://david-dm.org/hcodes/eyo#info=devDependencies)
+[![Dependency Status](https://img.shields.io/david/hcodes/eyo-kernel.svg?style=flat)](https://david-dm.org/hcodes/eyo-kernel)
 
 Частичное портирование [php-yoficator](https://code.google.com/p/php-yoficator/).
 
