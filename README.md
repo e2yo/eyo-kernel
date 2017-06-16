@@ -17,61 +17,51 @@
 + аббревиатуры не обрабатываются.
 
 ## Установка
-`npm install eyo-kernel --save`
+`npm install eyo-kernel`
 
 ## Зависимости
 Отсутствуют.
 
 ## Использование
 ```
-var eyo = require('eyo-kernel');
+const Eyo = require('eyo-kernel');
+const text = 'Мой текст...';
+
+// Работа с безопасным встроенным словарём.
+const safeEyo = new Eyo();
+safeEyo.loadSafeSync(); // ./dict/safe.txt
+console.log('restore', safeEyo.restore(text));
+console.log('lint', safeEyo.lint(text));
+
+// Работа с небезопасным встроенным словарём.
+const notSafeEyo = new Eyo();
+notSafeEyo.loadNotSafeSync(); // ./dict/not_safe.txt
+console.log('restore', notSafeEyo.restore(text));
+console.log('lint', notSafeEyo.lint(text));
+
+// Загрузка собственного словаря.
+const eyo = new Eyo();
+eyo.loadSync('./my_eyo_dict.txt');
+console.log('restore', eyo.restore(text));
+console.log('lint', eyo.lint(text));
+
+// Создание собственного словаря.
+const eyo = new Eyo();
+// Добавить слово в свой словарь.
+eyo.addWord('словоСБуквойЁ');
+//...
+// Удалить слово из словаря.
+eyo.removeWord('словоСБуквойЁ');
+//...
+// Очистить словарь.
+eyo.clear();
 ```
 
-## Методы
-### .restore(text)
-Безопасно восстанавливает букву «ё» в тексте.<br/>
-`text {string}` – текст. Обязательный аргумент.<br/>
-Возвращаемое значение: `{string}`.
-```js
-console.log(eyo.restore('Все лед')); // Все лёд.
-```
+## Словарь
+Это текстовый файл с кодировкой UTF-8, каждое слово на отдельной строке.  
+Слова в словаре чувствительны к регистру букв. Слова, начинающиеся со строчной буквы, заменят в тексте слова со строчной и заглавной букв (Еж → Ёж и еж → ёж).  
+А слова, начинающиеся с заглавной буквы, заменят в тексте слова только с заглавной буквы (Еж → Ёж).
 
-### .lint(text, [needSort])
-Поиск вариантов безопасной и небезопасной замены «ё».<br/>
-`text {string}` – текст. Обязательный аргумент.<br/>
-`needSort {boolean}` – Сортивать ли полученные варианты замены. Необязательный аргумент.<br/>
-Возвращаемое значение: `{Object}`.
-```js
-console.log(eyo.lint('Все лед.'));
-/* {
-  safe: [
-    {
-      before: 'Лед',
-      after: 'Лёд',
-      count: 1,
-      position: [
-        {
-          line: 1,
-          column: 5
-        }
-      ]
-    }
-  ]
-  notSafe: [
-    {
-      before: 'Все',
-      after: 'Всё',
-      count: 1,
-      position: [
-        {
-          line: 1,
-          column: 1
-        }
-      ]
-    }
-  ] 
-} */
-```
 
 ## [Консольная утилита](https://github.com/hcodes/eyo)
 
