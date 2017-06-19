@@ -23,7 +23,7 @@
 Отсутствуют.
 
 ## Использование
-```
+```js
 const Eyo = require('eyo-kernel');
 const text = 'Мой текст...';
 
@@ -49,10 +49,10 @@ console.log('lint', eyo.lint(text));
 const eyo = new Eyo();
 // Добавить слово в свой словарь.
 eyo.addWord('словоСБуквойЁ');
-//...
+
 // Удалить слово из словаря.
 eyo.removeWord('словоСБуквойЁ');
-//...
+
 // Очистить словарь.
 eyo.clear();
 ```
