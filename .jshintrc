@@ -1,5 +1,6 @@
 {
     "predef": ["it", "describe"],
+	"esversion": 6,
     "browser": true,
     "mocha": true,
     "jquery": true,

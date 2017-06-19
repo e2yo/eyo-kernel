@@ -14,8 +14,7 @@
         "src/end.js"
     ],
     "requireCurlyBraces": ["if", "else", "for", "while", "do"],
-    "requireSpaceAfterKeywords": ["do", "else"],
-    "disallowSpaceAfterKeywords": ["if", "for", "while", "switch"],
+    "requireSpaceAfterKeywords": ["if", "for", "while", "switch", "do", "else"],
     "disallowSpacesInFunctionExpression": {
         "beforeOpeningRoundBrace": true
     },
