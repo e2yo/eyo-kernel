@@ -29,19 +29,19 @@ const text = 'Мой текст...';
 
 // Работа с безопасным встроенным словарём.
 const safeEyo = new Eyo();
-safeEyo.loadSafeSync(); // ./dict/safe.txt
+safeEyo.dictionary.loadSafeSync(); // ./dict/safe.txt
 console.log(safeEyo.restore(text));
 console.log(safeEyo.lint(text));
 
 // Работа с небезопасным встроенным словарём.
 const notSafeEyo = new Eyo();
-notSafeEyo.loadNotSafeSync(); // ./dict/not_safe.txt
+notSafeEyo.dictionary.loadNotSafeSync(); // ./dict/not_safe.txt
 console.log(notSafeEyo.restore(text));
 console.log(notSafeEyo.lint(text));
 
 // Загрузка собственного словаря.
 const eyo = new Eyo();
-eyo.loadSync('./my_eyo_dict.txt');
+eyo.dictionary.loadSync('./my_eyo_dict.txt');
 console.log(eyo.restore(text));
 console.log(eyo.lint(text));
 
