@@ -30,31 +30,29 @@ const text = 'Мой текст...';
 // Работа с безопасным встроенным словарём.
 const safeEyo = new Eyo();
 safeEyo.loadSafeSync(); // ./dict/safe.txt
-console.log('restore', safeEyo.restore(text));
-console.log('lint', safeEyo.lint(text));
+console.log(safeEyo.restore(text));
+console.log(safeEyo.lint(text));
 
 // Работа с небезопасным встроенным словарём.
 const notSafeEyo = new Eyo();
 notSafeEyo.loadNotSafeSync(); // ./dict/not_safe.txt
-console.log('restore', notSafeEyo.restore(text));
-console.log('lint', notSafeEyo.lint(text));
+console.log(notSafeEyo.restore(text));
+console.log(notSafeEyo.lint(text));
 
 // Загрузка собственного словаря.
 const eyo = new Eyo();
 eyo.loadSync('./my_eyo_dict.txt');
-console.log('restore', eyo.restore(text));
-console.log('lint', eyo.lint(text));
+console.log(eyo.restore(text));
+console.log(eyo.lint(text));
 
 // Создание собственного словаря.
 const eyo = new Eyo();
 // Добавить слово в свой словарь.
-eyo.addWord('словоСБуквойЁ');
-
+eyo.dictionary.addWord('словоСБуквойЁ');
 // Удалить слово из словаря.
-eyo.removeWord('словоСБуквойЁ');
-
+eyo.dictionary.removeWord('словоСБуквойЁ');
 // Очистить словарь.
-eyo.clear();
+eyo.dictionary.clear();
 ```
 
 ## Словарь
