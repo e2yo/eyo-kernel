@@ -1,5 +1,8 @@
 # Changelog
 
+## v2.0.2
+Исправлена ошибка в методе `.dictionary.load()`.
+
 ## v2.0.1
 Правки в README.md.
 
