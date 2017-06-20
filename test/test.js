@@ -97,10 +97,11 @@ describe('lint', function() {
             assert.equal(eyo.restore(text), text);
         });
 
-        it('should load custom dictionary', function() {
+        it('should load custom dictionary', function(done) {
             const eyo = new Eyo();
-            eyo.dictionary.load(testDict, function(err, data) {
+            eyo.dictionary.load(testDict, function(err) {
                 assert.equal(eyo.restore('еж'), 'ёж');
+                done();
             });
         });
 
@@ -127,28 +128,32 @@ describe('lint', function() {
             assert.equal(Object.keys(eyo.dictionary.get()).length, 0);
         });
 
-        it('should load asynchronously safe dictionary', function() {
+        it('should load asynchronously safe dictionary', function(done) {
             const eyo = new Eyo();
             eyo.dictionary.loadSafe(function(err, data) {
                 assert.equal(eyo.restore('еж'), 'ёж');
+                done();
             });
         });
 
-        it('should load asynchronously not safe dictionary', function() {
+        it('should load asynchronously not safe dictionary', function(done) {
             const eyo = new Eyo();
             eyo.dictionary.loadNotSafe(function(err, data) {
                 assert.equal(eyo.restore('все'), 'всё');
+                done();
             });
         });
 
-        it('should not clear previous dictionary if dictionary did not load', function() {
+        it('should not clear previous dictionary if dictionary did not load', function(done) {
             const eyo = new Eyo();
             eyo.dictionary.addWord('Ёж');
 
             eyo.dictionary.load('./unknown_dict.txt', function(err, data) {
-                assert.ifErr(err);
+                assert.ok(err);
                 assert.equal(Object.keys(eyo.dictionary.get()).length, 1);
+                done();
             });
+
         });
     });
 });
