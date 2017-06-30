@@ -155,5 +155,19 @@ describe('lint', function() {
             });
 
         });
+
+        it('should set dictionary from string', function() {
+            const eyo = new Eyo();
+            eyo.dictionary.set('Ёж\nЕщё');
+
+            assert.equal(Object.keys(eyo.dictionary.get()).length, 2);
+        });
+
+        it('should set dictionary from array of strings', function() {
+            const eyo = new Eyo();
+            eyo.dictionary.set(['Ёж', 'Ещё']);
+
+            assert.equal(Object.keys(eyo.dictionary.get()).length, 2);
+        });
     });
 });
