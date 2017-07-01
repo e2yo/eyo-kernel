@@ -99,7 +99,7 @@ describe('lint', function() {
 
         it('should load custom dictionary', function(done) {
             const eyo = new Eyo();
-            eyo.dictionary.load(testDict, function(err) {
+            eyo.dictionary.load(testDict, function() {
                 assert.equal(eyo.restore('еж'), 'ёж');
                 done();
             });
@@ -130,7 +130,7 @@ describe('lint', function() {
 
         it('should load asynchronously safe dictionary', function(done) {
             const eyo = new Eyo();
-            eyo.dictionary.loadSafe(function(err, data) {
+            eyo.dictionary.loadSafe(function() {
                 assert.equal(eyo.restore('еж'), 'ёж');
                 done();
             });
@@ -138,7 +138,7 @@ describe('lint', function() {
 
         it('should load asynchronously not safe dictionary', function(done) {
             const eyo = new Eyo();
-            eyo.dictionary.loadNotSafe(function(err, data) {
+            eyo.dictionary.loadNotSafe(function() {
                 assert.equal(eyo.restore('все'), 'всё');
                 done();
             });
@@ -148,7 +148,7 @@ describe('lint', function() {
             const eyo = new Eyo();
             eyo.dictionary.addWord('Ёж');
 
-            eyo.dictionary.load('./unknown_dict.txt', function(err, data) {
+            eyo.dictionary.load('./unknown_dict.txt', function(err) {
                 assert.ok(err);
                 assert.equal(Object.keys(eyo.dictionary.get()).length, 1);
                 done();
