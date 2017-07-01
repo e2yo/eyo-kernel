@@ -1,6 +1,8 @@
+'use strict';
+
 const fs = require('fs');
 
-const dict = fs.readFileSync('Yoficator.dic.dat').toString('utf8');
+const dict = fs.readFileSync('Yoficator.dic.dat', 'utf8');
 const buf = dict.split('\n');
 
 const resSafe = [];
@@ -8,7 +10,7 @@ const resNotSafe = [];
 
 const identify = {};
 
-buf.forEach(function(word) {
+for (let word of buf) {
     word = word.trim();
 
     if (!word) {
@@ -26,17 +28,17 @@ buf.forEach(function(word) {
     }
 
     if (identify[word]) {
-        console.log('duplicate: ' + word);
+        console.log(`duplicate: ${word}`);
         process.exit(1);
     }
 
     if (word.search(/[Ёё]/) === -1) {
-        console.log('Not found the letter "ё": ' + word);
+        console.log(`Not found the letter "ё": ${word}`);
         process.exit(1);
     }
 
     identify[word] = true;
-});
+}
 
 resSafe.sort();
 resNotSafe.sort();
