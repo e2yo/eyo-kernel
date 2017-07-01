@@ -53,6 +53,7 @@ describe('lint', function() {
         assert.equal(replacements.length, 1);
 
         const pos0 = replacements[0].position[0];
+        assert.equal(pos0.index, 16);
         assert.equal(pos0.line, 1);
         assert.equal(pos0.column, 17);
     });
@@ -64,10 +65,12 @@ describe('lint', function() {
 
         const rep0 = replacements[0];
         const pos0 = rep0.position[0];
+        assert.equal(pos0.index, 16);
         assert.equal(pos0.line, 1);
         assert.equal(pos0.column, 17);
 
         const pos1 = rep0.position[1];
+        assert.equal(pos1.index, 40);
         assert.equal(pos1.line, 2);
         assert.equal(pos1.column, 17);
     });
@@ -168,6 +171,13 @@ describe('lint', function() {
             eyo.dictionary.set(['Ёж', 'Ещё']);
 
             assert.equal(Object.keys(eyo.dictionary.get()).length, 2);
+        });
+
+        it('should set dictionary from packed string', function() {
+            const eyo = new Eyo();
+            eyo.dictionary.set(['аистёнк(а|е|ом|у)']);
+
+            assert.equal(Object.keys(eyo.dictionary.get()).length, 8);
         });
     });
 });
