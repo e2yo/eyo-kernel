@@ -29,18 +29,19 @@ const text = 'Мой текст...';
 
 // Работа с безопасным встроенным словарём.
 const safeEyo = new Eyo();
-safeEyo.dictionary.loadSafeSync(); // ./dict/safe.txt
+safeEyo.dictionary.loadSafeSync(); // ./dict/safe.txt.gz
 console.log(safeEyo.restore(text));
 console.log(safeEyo.lint(text));
 
 // Работа с небезопасным встроенным словарём.
 const notSafeEyo = new Eyo();
-notSafeEyo.dictionary.loadNotSafeSync(); // ./dict/not_safe.txt
+notSafeEyo.dictionary.loadNotSafeSync(); // ./dict/not_safe.txt.gz
 console.log(notSafeEyo.restore(text));
 console.log(notSafeEyo.lint(text));
 
 // Загрузка собственного словаря.
 const eyo = new Eyo();
+// Также поддерживаются словари, сжатые с помощью gzip, *.txt.gz
 eyo.dictionary.loadSync('./my_eyo_dict.txt');
 console.log(eyo.restore(text));
 console.log(eyo.lint(text));

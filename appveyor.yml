@@ -1,15 +1,9 @@
-# http://www.appveyor.com/docs/appveyor-yml
-
-# build version format
 version: "{build}"
-
-# what combinations to test
 environment:
   matrix:
     - nodejs_version: 8
     - nodejs_version: 10
 
-# Get the latest stable version of Node 0.STABLE.latest
 install:
   - npm install
 
