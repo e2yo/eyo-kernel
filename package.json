@@ -1,7 +1,7 @@
 {
   "name": "eyo-kernel",
   "description": "Restoring the letter «ё» (yo) in russian texts",
-  "version": "2.4.0",
+  "version": "2.5.0",
   "author": {
     "name": "Denis Seleznev",
     "email": "hcodes@yandex.ru",
@@ -33,12 +33,13 @@
   ],
   "devDependencies": {
     "chai": "^4.1.2",
-    "eslint": "^5.0.1",
+    "eslint": "^5.5.0",
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0"
   },
   "scripts": {
-    "test": "npm run-script eslint && npm run-script unit-test-coverage",
+    "gzip": "node ./tools/gzip.js",
+    "test": "npm run gzip && npm run-script eslint && npm run-script unit-test-coverage",
     "eslint": "eslint .",
     "unit-test": "./node_modules/.bin/mocha -u bdd -R spec --recursive test",
     "unit-test-coverage": "./node_modules/.bin/istanbul cover ./node_modules/mocha/bin/_mocha -- -u bdd -R spec --recursive test"

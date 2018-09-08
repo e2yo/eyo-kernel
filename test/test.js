@@ -26,13 +26,22 @@ describe('restore', function() {
 describe('lint', function() {
     this.timeout(5000);
 
-    it('should return replacement', () => {
+    it('should return replacements', () => {
 		const text = '«Лед тронулся, господа присяжные заседатели!»';
         const safeReplacements = safeEyo.lint(text);
         const notSafeReplacements = notSafeEyo.lint(text);
 
         assert.equal(safeReplacements.length, 1);
         assert.equal(notSafeReplacements.length, 0);
+    });
+    
+    it('should return replacements, complex cases', () => {
+		const text = 'Город Киев. Бильярдных киев. Различен.';
+        const notSafeReplacements = notSafeEyo.lint(text);
+        const safeReplacements = safeEyo.lint(text);
+        
+        assert.equal(safeReplacements.length, 1);
+        assert.equal(notSafeReplacements.length, 2);
     });
 
     it('should return sorted results', function() {
