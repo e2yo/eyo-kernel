@@ -5,14 +5,14 @@
   "author": {
     "name": "Denis Seleznev",
     "email": "hcodes@yandex.ru",
-    "url": "https://github.com/hcodes/eyo-kernel"
+    "url": "https://github.com/e2yo/eyo-kernel"
   },
   "main": "lib/eyo.js",
-  "homepage": "https://github.com/hcodes/eyo-kernel",
+  "homepage": "https://github.com/e2yo/eyo-kernel",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git://github.com/hcodes/eyo-kernel.git"
+    "url": "git://github.com/e2yo/eyo-kernel.git"
   },
   "keywords": [
     "e",
