@@ -97,7 +97,11 @@ class Packer {
             }
         });
 
-        return result.sort();
+        return result.sort((word1, word2) => {
+            word1 = word1.replace(/^_/, '');
+            word2 = word2.replace(/^_/, '');
+            return word1 < word2 ? -1 : word1 > word2 ? +1 : 0;
+        });
     }
 
     getPart(word) {
