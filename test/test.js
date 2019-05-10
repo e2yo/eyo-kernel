@@ -36,12 +36,39 @@ describe('lint', function() {
     });
     
     it('should return replacements, complex cases', () => {
-		const text = 'Город Киев. Бильярдных киев. Различен.';
-        const notSafeReplacements = notSafeEyo.lint(text);
-        const safeReplacements = safeEyo.lint(text);
-        
-        assert.equal(safeReplacements.length, 1);
-        assert.equal(notSafeReplacements.length, 2);
+        [
+            {
+                text: 'Город Киев. Бильярдных киев. Различен.',
+                safeReplacements: 1,
+                notSafeReplacements: 2
+            },
+            {
+                text: 'Душистый левкой. Лесной левкой. Махровый левкой. Белый левкой.',
+                safeReplacements: 0,
+                notSafeReplacements: 4
+            },
+            {
+                text: 'Петр. Пётр.',
+                safeReplacements: 0,
+                notSafeReplacements: 1
+            },
+            {
+                text: 'Ручными стежками',
+                safeReplacements: 0,
+                notSafeReplacements: 1
+            },
+            {
+                text: 'Лешек Чёрный',
+                safeReplacements: 0,
+                notSafeReplacements: 1
+            }
+        ].forEach((item) => {
+            const notSafeReplacements = notSafeEyo.lint(item.text);
+            const safeReplacements = safeEyo.lint(item.text);
+    
+            assert.equal(notSafeReplacements.length, item.notSafeReplacements, `notSafe: ${item.text}`);
+            assert.equal(safeReplacements.length, item.safeReplacements, `Safe: ${item.text}`);
+        });
     });
 
     it('should return sorted results', function() {
