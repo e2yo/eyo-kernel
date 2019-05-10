@@ -7,8 +7,6 @@
 [![Coverage Status](https://img.shields.io/coveralls/e2yo/eyo-kernel.svg?style=flat)](https://coveralls.io/r/e2yo/eyo-kernel)
 [![Dependency Status](https://img.shields.io/david/e2yo/eyo-kernel.svg?style=flat)](https://david-dm.org/e2yo/eyo-kernel)
 
-Частичное портирование [php-yoficator](https://code.google.com/p/php-yoficator/).
-
 ## Особенности
 + проверка и восстановление буквы «ё» в русских текстах, вместо написанной «е»;
 + замена «е» на «ё» только в бесспорных случаях;
@@ -57,6 +55,9 @@ eyo.dictionary.clear();
 ```
 
 ## Словарь
+Первоначально словарь взят из проекта [php-yoficator](https://github.com/rin-nas/php-yoficator/tree/master/Text). По доработкам словаря см. [CHANGELOG.md](./CHANGELOG.md).
+
+## Формат словаря
 Это текстовый файл с кодировкой UTF-8, каждое слово на отдельной строке.  
 Слова в словаре чувствительны к регистру букв. Слова, начинающиеся со строчной буквы, заменят в тексте слова со строчной и заглавной букв (Еж → Ёж и еж → ёж).  
 А слова, начинающиеся с заглавной буквы, заменят в тексте слова только с заглавной буквы (Еж → Ёж).
