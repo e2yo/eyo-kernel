@@ -61,6 +61,11 @@ describe('lint', function() {
                 text: 'Лешек Чёрный',
                 safeReplacements: 0,
                 notSafeReplacements: 1
+            },
+            {
+                text: 'Василий Фёдорович Зуев. У зуев.',
+                safeReplacements: 1,
+                notSafeReplacements: 1
             }
         ].forEach((item) => {
             const notSafeReplacements = notSafeEyo.lint(item.text);
