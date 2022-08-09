@@ -10,6 +10,9 @@ const tests = require('./pairs.json');
 const testDict = './test/dict.txt';
 const testDictGz = './test/dict.txt.gz';
 
+const jsonSafeDict = require('./../dict_json/safe.json');
+const jsonNotSafeDict = require('./../dict_json/not_safe.json');
+
 describe('restore', function() {
     this.timeout(5000);
 
@@ -34,7 +37,7 @@ describe('lint', function() {
         assert.equal(safeReplacements.length, 1);
         assert.equal(notSafeReplacements.length, 0);
     });
-    
+
     it('should return replacements, complex cases', () => {
         [
             {
@@ -70,7 +73,7 @@ describe('lint', function() {
         ].forEach((item) => {
             const notSafeReplacements = notSafeEyo.lint(item.text);
             const safeReplacements = safeEyo.lint(item.text);
-    
+
             assert.equal(notSafeReplacements.length, item.notSafeReplacements, `notSafe: ${item.text}`);
             assert.equal(safeReplacements.length, item.safeReplacements, `Safe: ${item.text}`);
         });
@@ -234,6 +237,18 @@ describe('lint', function() {
             eyo.dictionary.set(['аистёнк(а|е|ом|у)']);
 
             assert.equal(Object.keys(eyo.dictionary.get()).length, 8);
+        });
+
+        it('should set synchronously safe dictionary', function() {
+          const eyo = new Eyo();
+          eyo.dictionary.set(jsonSafeDict);
+          assert.equal(eyo.restore('еж'), 'ёж');
+        });
+
+        it('should set synchronously not_safe dictionary', function() {
+          const eyo = new Eyo();
+          eyo.dictionary.set(jsonNotSafeDict);
+          assert.equal(eyo.restore('все'), 'всё');
         });
     });
 });
