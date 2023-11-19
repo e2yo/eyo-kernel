@@ -2,10 +2,6 @@
 ===
 [![NPM version](https://img.shields.io/npm/v/eyo-kernel.svg?style=flat)](https://www.npmjs.com/package/eyo-kernel)
 [![NPM downloads](https://img.shields.io/npm/dm/eyo-kernel.svg?style=flat)](https://www.npmjs.com/package/eyo-kernel)
-[![Build Status](https://img.shields.io/travis/e2yo/eyo-kernel.svg?style=flat)](https://travis-ci.org/e2yo/eyo-kernel)
-[![Build Status](https://img.shields.io/appveyor/ci/hcodes/eyo-kernel/master.svg?style=flat)](https://ci.appveyor.com/project/hcodes/eyo-kernel)
-[![Coverage Status](https://img.shields.io/coveralls/e2yo/eyo-kernel.svg?style=flat)](https://coveralls.io/r/e2yo/eyo-kernel)
-[![Dependency Status](https://img.shields.io/david/e2yo/eyo-kernel.svg?style=flat)](https://david-dm.org/e2yo/eyo-kernel)
 
 ## Особенности
 + проверка и восстановление буквы «ё» в русских текстах, вместо написанной «е»;
@@ -58,8 +54,8 @@ eyo.dictionary.clear();
 Первоначально словарь взят из проекта [php-yoficator](https://github.com/rin-nas/php-yoficator/tree/master/Text). По доработкам словаря см. [CHANGELOG.md](./CHANGELOG.md).
 
 ## Формат словаря
-Это текстовый файл с кодировкой UTF-8, каждое слово на отдельной строке.  
-Слова в словаре чувствительны к регистру букв. Слова, начинающиеся со строчной буквы, заменят в тексте слова со строчной и заглавной букв (Еж → Ёж и еж → ёж).  
+Это текстовый файл с кодировкой UTF-8, каждое слово на отдельной строке.
+Слова в словаре чувствительны к регистру букв. Слова, начинающиеся со строчной буквы, заменят в тексте слова со строчной и заглавной букв (Еж → Ёж и еж → ёж).
 А слова, начинающиеся с заглавной буквы, заменят в тексте слова только с заглавной буквы (Еж → Ёж).
 Для комментариев используйте символ `#`.
 
@@ -67,7 +63,7 @@ eyo.dictionary.clear();
 ## [Консольная утилита](https://github.com/e2yo/eyo)
 
 ## Eyo в Yaspeller
-В [yaspeller](https://github.com/hcodes/yaspeller/) добавлена поддержка eyo.<br/>Используйте опцию [`--check-yo`](https://github.com/hcodes/yaspeller/#--check-yo) в командной строке `yaspeller -l ru --check-yo my_file.txt` или параметр [`checkYo: true`](https://github.com/hcodes/yaspeller/#configuration) в конфигурационном файле. 
+В [yaspeller](https://github.com/hcodes/yaspeller/) добавлена поддержка eyo.<br/>Используйте опцию [`--check-yo`](https://github.com/hcodes/yaspeller/#--check-yo) в командной строке `yaspeller -l ru --check-yo my_file.txt` или параметр [`checkYo: true`](https://github.com/hcodes/yaspeller/#configuration) в конфигурационном файле.
 
 ## Ссылки
 + [Веб-интерфейс для восстановления буквы «ё»](https://e2yo.github.io/eyo-browser/)
