@@ -7,7 +7,6 @@ notSafeEyo.dictionary.loadNotSafeSync();
 
 const tests = require('./pairs.json');
 const testDict = './test/dict.txt';
-const testDictGz = './test/dict.txt.gz';
 
 describe('restore', function() {
     tests.forEach(test => {
@@ -143,20 +142,6 @@ describe('lint', function() {
                 expect(eyo.restore('еж')).toEqual('ёж');
                 done();
             });
-        });
-
-        it('should load custom gzip dictionary', function(done) {
-            const eyo = new Eyo();
-            eyo.dictionary.load(testDictGz, function() {
-                expect(eyo.restore('еж')).toEqual('ёж');
-                done();
-            });
-        });
-
-        it('should sync load custom gzip dictionary', function() {
-            const eyo = new Eyo();
-            eyo.dictionary.loadSync(testDictGz);
-            expect(eyo.restore('еж')).toEqual('ёж');
         });
 
         it('should remove word from dictionary', function() {

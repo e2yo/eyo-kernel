@@ -37,10 +37,8 @@
     "jest": "29.7.0"
   },
   "scripts": {
-    "gzip": "node ./tools/gzip.js",
-    "test": "npm run gzip && npm run-script eslint && npm run-script unit-test-coverage",
+    "test": "npm run eslint && npm run unit-test",
     "eslint": "eslint .",
-    "unit-test": "mocha",
-    "unit-test-coverage": "nyc mocha"
+    "unit-test": "jest ./test"
   }
 }
