@@ -1,6 +1,5 @@
-'use strict';
-
-const fs = require('fs');
+import fs from 'node:fs';
+import process from 'node:process';
 
 const dict = fs.readFileSync('Yoficator.dic.dat', 'utf8');
 const buf = dict.split('\n');

@@ -1,0 +1,21 @@
+{
+    "exclude": ["dist", "test", "tools", "*.mjs"],
+    "compilerOptions": {
+        "outDir": "./dist/",
+        "module": "esnext",
+        "target": "esnext",
+        "moduleResolution": "bundler",
+        "declaration": true,
+        "declarationDir": "./dist",
+        "allowJs": true,
+        "esModuleInterop": true,
+        "lib": [
+            "es6",
+            "dom"
+        ],
+        "noImplicitAny": true,
+        "noImplicitThis": true,
+        "strictNullChecks": false,
+        "forceConsistentCasingInFileNames": true
+    }
+}

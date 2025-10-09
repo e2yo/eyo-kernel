@@ -17,28 +17,27 @@
 Отсутствуют.
 
 ## Использование
+
+### Node.js
 ```js
-const Eyo = require('eyo-kernel');
+import { Eyo } from 'eyo-kernel';
+import { loadSafeDictionary, loadNotSafeDictionary } from 'eyo-kernel/load';
+
 const text = 'Мой текст...';
 
 // Работа с безопасным встроенным словарём.
 const safeEyo = new Eyo();
-safeEyo.dictionary.loadSafeSync(); // ./dict/safe.txt.gz
+const safeDictionary = await loadSafeDictionary() // ./dict/safe.txt
+safeEyo.dictionary.set(safeDictionary);
 console.log(safeEyo.restore(text));
 console.log(safeEyo.lint(text));
 
 // Работа с небезопасным встроенным словарём.
 const notSafeEyo = new Eyo();
-notSafeEyo.dictionary.loadNotSafeSync(); // ./dict/not_safe.txt.gz
+const notSafeDictionary = loadNotSafeDictionary(); // ./dict/not_safe.txt
+notSafeEyo.dictionary.set(notSafeDictionary);
 console.log(notSafeEyo.restore(text));
 console.log(notSafeEyo.lint(text));
-
-// Загрузка собственного словаря.
-const eyo = new Eyo();
-// Также поддерживаются словари, сжатые с помощью gzip, *.txt.gz
-eyo.dictionary.loadSync('./my_eyo_dict.txt');
-console.log(eyo.restore(text));
-console.log(eyo.lint(text));
 
 // Создание собственного словаря.
 const eyo = new Eyo();
@@ -48,6 +47,27 @@ eyo.dictionary.addWord('словоСБуквойЁ');
 eyo.dictionary.removeWord('словоСБуквойЁ');
 // Очистить словарь.
 eyo.dictionary.clear();
+```
+
+### Браузер
+```js
+import { Eyo } from 'eyo-kernel';
+
+const text = 'Мой текст...';
+
+// Работа с безопасным встроенным словарём.
+const safeEyo = new Eyo();
+const safeDictionary = await fetch('./dictionary/safe.txt').then(response => response.text());
+safeEyo.dictionary.set(safeDictionary);
+console.log(safeEyo.restore(text));
+console.log(safeEyo.lint(text));
+
+// Работа с небезопасным встроенным словарём.
+const notSafeEyo = new Eyo();
+const notSafeDictionary = await fetch('./dictionary/not_safe.txt').then(response => response.text());
+notSafeEyo.dictionary.set(notSafeDictionary);
+console.log(notSafeEyo.restore(text));
+console.log(notSafeEyo.lint(text));
 ```
 
 ## Словарь

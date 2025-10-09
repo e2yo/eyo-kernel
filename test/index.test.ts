@@ -1,16 +1,12 @@
-const Eyo = require('../lib/eyo');
-const safeEyo = new Eyo();
-safeEyo.dictionary.loadSafeSync();
+import { Eyo } from '../src';
+import { notSafeDictionary, notSafeEyo, safeDictionary, safeEyo } from './globals';
+import { tests } from './tests';
 
-const notSafeEyo = new Eyo();
-notSafeEyo.dictionary.loadNotSafeSync();
+const testDict = 'ёж\nёлка\nЕё';
 
-const tests = require('./pairs.json');
-const testDict = './test/dict.txt';
-
-describe('restore', function() {
+describe('restore', () => {
     tests.forEach(test => {
-		const before = test[0];
+        const before = test[0];
         const after = test[1];
 
         it(String(before), () => {
@@ -19,9 +15,9 @@ describe('restore', function() {
     });
 });
 
-describe('lint', function() {
+describe('lint', () => {
     it('should return replacements', () => {
-		const text = '«Лед тронулся, господа присяжные заседатели!»';
+        const text = '«Лед тронулся, господа присяжные заседатели!»';
         const safeReplacements = safeEyo.lint(text);
         const notSafeReplacements = notSafeEyo.lint(text);
 
@@ -70,8 +66,8 @@ describe('lint', function() {
         });
     });
 
-    it('should return sorted results', function() {
-		const text = 'елка, Елка, елки, Елка, Береза, Ежик, ежики';
+    it('should return sorted results', () => {
+        const text = 'елка, Елка, елки, Елка, Береза, Ежик, ежики';
         const safeReplacements = safeEyo.lint(text, true);
         const notSafeReplacements = notSafeEyo.lint(text, true);
 
@@ -79,11 +75,11 @@ describe('lint', function() {
         expect(notSafeReplacements.length).toEqual(0);
 
         ['Береза', 'Ежик', 'Елка', 'ежики', 'елка', 'елки'].forEach((word, i) => {
-			expect(safeReplacements[i].before).toEqual(word);
-		});
+            expect(safeReplacements[i].before).toEqual(word);
+        });
     });
 
-    it('should return correct positions', function() {
+    it('should return correct positions', () => {
         const replacements = safeEyo.lint('В лесу родилась елочка.', true);
 
         expect(replacements.length).toEqual(1);
@@ -94,7 +90,7 @@ describe('lint', function() {
         expect(pos0.column).toEqual(17);
     });
 
-    it('should return correct positions with new lines', function() {
+    it('should return correct positions with new lines', () => {
         const replacements = safeEyo.lint('В лесу родилась елочка.\nВ лесу родилась елочка.\n', true);
 
         expect(replacements.length).toEqual(1);
@@ -111,21 +107,21 @@ describe('lint', function() {
         expect(pos1.column).toEqual(17);
     });
 
-    it('should return empty result', function() {
-        const replacements = safeEyo.lint(null, true);
+    it('should return empty result', () => {
+        const replacements = safeEyo.lint("", true);
 
         expect(replacements.length).toEqual(0);
     });
 
-    describe('dictionary', function() {
-        it('should not restore text in empty dictionary', function() {
+    describe('dictionary', () => {
+        it('should not restore text in empty dictionary', () => {
             const eyo = new Eyo();
             const text = 'Елка';
 
             expect(eyo.restore(text)).toEqual(text);
         });
 
-        it('should not restore text after deletion of word', function() {
+        it('should not restore text after deletion of word', () => {
             const eyo = new Eyo();
             const text = 'Елка, елка';
 
@@ -136,80 +132,56 @@ describe('lint', function() {
             expect(eyo.restore(text)).toEqual(text);
         });
 
-        it('should load custom dictionary', function(done) {
+        it('should remove word from dictionary', () => {
             const eyo = new Eyo();
-            eyo.dictionary.load(testDict, function() {
-                expect(eyo.restore('еж')).toEqual('ёж');
-                done();
-            });
-        });
-
-        it('should remove word from dictionary', function() {
-            const eyo = new Eyo();
-            eyo.dictionary.loadSync(testDict);
+            eyo.dictionary.set(testDict);
             eyo.dictionary.removeWord('ёж');
             expect(eyo.restore('еж')).toEqual('еж');
             expect(Object.keys(eyo.dictionary.get()).length).toEqual(3);
         });
 
-        it('should remove uppercase word from dictionary', function() {
+        it('should remove uppercase word from dictionary', () => {
             const eyo = new Eyo();
-            eyo.dictionary.loadSync(testDict);
+            eyo.dictionary.set(testDict);
             eyo.dictionary.removeWord('Её');
             expect(eyo.restore('Ее')).toEqual('Ее');
             expect(Object.keys(eyo.dictionary.get()).length).toEqual(4);
         });
 
-        it('should clear dictionary', function() {
+        it('should clear dictionary', () => {
             const eyo = new Eyo();
-            eyo.dictionary.loadSync(testDict);
+            eyo.dictionary.set(testDict);
             eyo.dictionary.clear();
             expect(Object.keys(eyo.dictionary.get()).length).toEqual(0);
         });
 
-        it('should load asynchronously safe dictionary', function(done) {
+        it('should load asynchronously safe dictionary', () => {
             const eyo = new Eyo();
-            eyo.dictionary.loadSafe(function() {
-                expect(eyo.restore('еж')).toEqual('ёж');
-                done();
-            });
+            eyo.dictionary.set(safeDictionary);
+            expect(eyo.restore('еж')).toEqual('ёж');
         });
 
-        it('should load asynchronously not safe dictionary', function(done) {
+        it('should load asynchronously not safe dictionary', () => {
             const eyo = new Eyo();
-            eyo.dictionary.loadNotSafe(function() {
-                expect(eyo.restore('все')).toEqual('всё');
-                done();
-            });
+            eyo.dictionary.set(notSafeDictionary);
+            expect(eyo.restore('все')).toEqual('всё');
         });
 
-        it('should not clear previous dictionary if dictionary did not load', function(done) {
-            const eyo = new Eyo();
-            eyo.dictionary.addWord('Ёж');
-
-            eyo.dictionary.load('./unknown_dict.txt', function(err) {
-                expect(err).toBeDefined();
-                expect(Object.keys(eyo.dictionary.get()).length).toEqual(1);
-                done();
-            });
-
-        });
-
-        it('should set dictionary from string', function() {
+        it('should set dictionary from string', () => {
             const eyo = new Eyo();
             eyo.dictionary.set('Ёж\nЕщё');
 
             expect(Object.keys(eyo.dictionary.get()).length).toEqual(2);
         });
 
-        it('should set dictionary from array of strings', function() {
+        it('should set dictionary from array of strings', () => {
             const eyo = new Eyo();
             eyo.dictionary.set(['Ёж', 'Ещё']);
 
             expect(Object.keys(eyo.dictionary.get()).length).toEqual(2);
         });
 
-        it('should set dictionary from packed string', function() {
+        it('should set dictionary from packed string', () => {
             const eyo = new Eyo();
             eyo.dictionary.set(['аистёнк(а|е|ом|у)']);
 
