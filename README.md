@@ -82,9 +82,6 @@ console.log(notSafeEyo.lint(text));
 
 ## [Консольная утилита](https://github.com/e2yo/eyo)
 
-## Eyo в Yaspeller
-В [yaspeller](https://github.com/hcodes/yaspeller/) добавлена поддержка eyo.<br/>Используйте опцию [`--check-yo`](https://github.com/hcodes/yaspeller/#--check-yo) в командной строке `yaspeller -l ru --check-yo my_file.txt` или параметр [`checkYo: true`](https://github.com/hcodes/yaspeller/#configuration) в конфигурационном файле.
-
 ## Ссылки
 + [Веб-интерфейс для восстановления буквы «ё»](https://e2yo.github.io/eyo-browser/)
 + [Консольная утилита](https://github.com/e2yo/eyo)
