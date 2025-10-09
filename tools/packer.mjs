@@ -1,6 +1,5 @@
-'use strict';
+import fs from 'node:fs';
 
-const fs = require('fs');
 const endings = [
     'а', 'ай', 'айте', 'ал', 'ала', 'али', 'ало', 'ам', 'ами',
     'ась', 'ать', 'аться', 'ах', 'аюсь', 'ают', 'аются', 'ая', 'аясь', 'аяся', 'аяся',
@@ -19,7 +18,7 @@ const endings = [
 
 const reEndings = endings.map(e => new RegExp(e + '$'));
 
-class Packer {
+export class Packer {
     constructor(src, dest) {
         const words = fs.readFileSync(src, 'utf-8').trim().split(/\r?\n/).sort();
         const result = this.prepare(words);
@@ -115,5 +114,3 @@ class Packer {
         return [word, ''];
     }
 }
-
-module.exports = Packer;
