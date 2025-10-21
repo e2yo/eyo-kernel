@@ -1,5 +1,5 @@
-import { Eyo } from '../src';
-import { notSafeDictionary, notSafeEyo, safeDictionary, safeEyo } from './globals';
+import { Eyo, safeDictionary, notSafeDictionary } from '../src';
+import { notSafeEyo, safeEyo } from './globals';
 import { tests } from './tests';
 
 const testDict = 'ёж\nёлка\nЕё';
