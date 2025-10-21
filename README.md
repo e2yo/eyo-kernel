@@ -17,54 +17,19 @@
 Отсутствуют.
 
 ## Использование
-
-### Node.js
 ```js
-import { Eyo } from 'eyo-kernel';
-import { loadSafeDictionary, loadNotSafeDictionary } from 'eyo-kernel/load';
+import { Eyo, safeDictionary, notSafeDictionary } from 'eyo-kernel';
 
-const text = 'Мой текст...';
+const text = 'Ежик шел по лесу';
 
 // Работа с безопасным встроенным словарём.
 const safeEyo = new Eyo();
-const safeDictionary = await loadSafeDictionary() // ./dict/safe.txt
 safeEyo.dictionary.set(safeDictionary);
 console.log(safeEyo.restore(text));
 console.log(safeEyo.lint(text));
 
 // Работа с небезопасным встроенным словарём.
 const notSafeEyo = new Eyo();
-const notSafeDictionary = loadNotSafeDictionary(); // ./dict/not_safe.txt
-notSafeEyo.dictionary.set(notSafeDictionary);
-console.log(notSafeEyo.restore(text));
-console.log(notSafeEyo.lint(text));
-
-// Создание собственного словаря.
-const eyo = new Eyo();
-// Добавить слово в свой словарь.
-eyo.dictionary.addWord('словоСБуквойЁ');
-// Удалить слово из словаря.
-eyo.dictionary.removeWord('словоСБуквойЁ');
-// Очистить словарь.
-eyo.dictionary.clear();
-```
-
-### Браузер
-```js
-import { Eyo } from 'eyo-kernel';
-
-const text = 'Мой текст...';
-
-// Работа с безопасным встроенным словарём.
-const safeEyo = new Eyo();
-const safeDictionary = await fetch('./dictionary/safe.txt').then(response => response.text());
-safeEyo.dictionary.set(safeDictionary);
-console.log(safeEyo.restore(text));
-console.log(safeEyo.lint(text));
-
-// Работа с небезопасным встроенным словарём.
-const notSafeEyo = new Eyo();
-const notSafeDictionary = await fetch('./dictionary/not_safe.txt').then(response => response.text());
 notSafeEyo.dictionary.set(notSafeDictionary);
 console.log(notSafeEyo.restore(text));
 console.log(notSafeEyo.lint(text));

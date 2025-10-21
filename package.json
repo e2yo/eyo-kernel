@@ -1,7 +1,7 @@
 {
   "name": "eyo-kernel",
   "description": "Restoring the letter «ё» (yo) in russian texts",
-  "version": "3.0.2",
+  "version": "4.0.0",
   "author": {
     "name": "Denis Seleznev",
     "email": "hcodes@yandex.ru",
@@ -58,7 +58,8 @@
     "test": "npm run eslint && npm run jest",
     "jest": "NODE_OPTIONS=--experimental-vm-modules jest ./test",
     "eslint": "eslint .",
-    "build": "tsc",
+    "create:dicts": "node ./tools/createDictionaries.mjs",
+    "build": "npm run create:dicts && tsc",
     "unit-test": "jest ./test",
     "prepare": "npm run build"
   }
