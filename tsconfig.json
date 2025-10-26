@@ -17,5 +17,9 @@
         "noImplicitThis": true,
         "strictNullChecks": false,
         "forceConsistentCasingInFileNames": true
+    },
+    "tsc-alias": {
+      "resolveFullPaths": true,
+      "verbose": false
     }
 }
