@@ -1,7 +1,7 @@
 import { Dictionary } from './dictionary';
 
-const PUNCTUATION = '[{}()[\\]|<>=\\_"\'«»„“#$^%&*+-:;.,?!]';
-const REG_EXP = new RegExp('([А-ЯЁа-яё])[а-яё]+(?![а-яё]|\\.[ \u00A0\t]+([а-яё]|[А-ЯЁ]{2}|' +
+const PUNCTUATION = '[{}()|<>=_"\'«»„“#$^%&*+:;,?!\u2011\\-[\\]]';
+const REG_EXP = new RegExp('([А-ЯЁа-яё])[а-яё]+(?!\\.[ \u00A0\t]+([а-яё]|[А-ЯЁ]{2}|' +
     PUNCTUATION + ')|\\.' +
     PUNCTUATION + ')', 'g');
 
