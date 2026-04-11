@@ -44,6 +44,25 @@ console.log(notSafeEyo.lint(text));
 А слова, начинающиеся с заглавной буквы, заменят в тексте слова только с заглавной буквы (Еж → Ёж).
 Для комментариев используйте символ `#`.
 
+## Отдельные сборки для браузера
++ `./dist/bundle.safe.js`: готовый js-скрипт для браузера со встроенным безопасным словарём.
++ `./dist/bundle.notSafe.js`: готовый js-скрипт для браузера со встроенным небезопасным словарём.
+
+```html
+<script src="https://unpkg.com/eyo-kernel/dist/bundle.safe.js"></script>
+<script>
+  console.log(window.safeEyo.restore('Ежик шел по лесу'));
+  console.log(window.safeEyo.lint('Ежик шел по лесу'));
+</script>
+```
+
+```html
+<script src="https://unpkg.com/eyo-kernel/dist/bundle.notSafe.js"></script>
+<script>
+  console.log(window.notSafeEyo.restore('Ежик шел по лесу'));
+  console.log(window.notSafeEyo.lint('Ежик шел по лесу'));
+</script>
+```
 
 ## [Консольная утилита](https://github.com/e2yo/eyo)
 
