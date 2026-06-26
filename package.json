@@ -39,12 +39,14 @@
     "LICENSE"
   ],
   "devDependencies": {
+    "globals": "17.7.0",
     "@types/jest": "^30.0.0",
     "@types/node": "^26.0.1",
     "@typescript-eslint/eslint-plugin": "^8.62.0",
     "@typescript-eslint/parser": "^8.62.0",
     "del-cli": "^7.0.0",
     "eslint": "^10.5.0",
+    "@eslint/js": "^10.0.1",
     "jest": "^30.4.2",
     "jest-environment-jsdom": "^30.4.1",
     "ts-jest": "^29.4.11",
