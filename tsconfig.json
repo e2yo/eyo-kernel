@@ -4,9 +4,10 @@
         "outDir": "./dist/",
         "module": "esnext",
         "target": "esnext",
-        "moduleResolution": "bundler",
+        "rootDir": "./src",
         "declaration": true,
-        "declarationDir": "./dist",
+        "declarationDir": "./dist/",
+        "moduleResolution": "bundler",
         "allowJs": true,
         "esModuleInterop": true,
         "lib": [
